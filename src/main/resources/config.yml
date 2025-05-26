@@ -6,7 +6,7 @@ blocked-words:
   - bLOcKed
 
 ## if the punish-type is set to BAN, the ban-duration will be used
-punish-type: BAN
+punish-type: WARN
 
 ## (s = seconds, m = minutes, h = hours, d = days)
 ban-duration: 1h 

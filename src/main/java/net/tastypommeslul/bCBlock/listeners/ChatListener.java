@@ -43,10 +43,13 @@ public class ChatListener implements Listener {
                                             BCBlock.banDuration.endsWith("m") || BCBlock.banDuration.endsWith("M") ||
                                             BCBlock.banDuration.endsWith("h") || BCBlock.banDuration.endsWith("H") ? "PT" + BCBlock.banDuration : "P" + BCBlock.banDuration), "[Blocked words]");
                             break;
+                        case WARN:
+                            BCBlock.getPlugin(BCBlock.class).getServer().dispatchCommand(BCBlock.getPlugin(BCBlock.class).getServer().getConsoleSender(), "warn " + p.getName());
                         default:
 
                     }
-                    return; // Exit the method after kicking the player
+
+                    return;
                 }
             }
         }

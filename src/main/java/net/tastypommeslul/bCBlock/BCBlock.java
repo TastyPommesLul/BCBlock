@@ -24,7 +24,7 @@ public final class BCBlock extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        punishType = PunishType.valueOf(config.getString("punish-type", "BAN").toUpperCase());
+        punishType = PunishType.valueOf(config.getString("punish-type", "WARN").toUpperCase());
         banDuration = config.getString("ban-duration", "1h");
         banMessage = config.getString("ban-message", "You have been banned from the server for saying a blocked word.");
         kickMessage = config.getString("kick-message", "You have been kicked from the server saying a blocked word.");
