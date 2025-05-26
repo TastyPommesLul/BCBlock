@@ -21,6 +21,7 @@ public final class BCBlock extends JavaPlugin {
 
     public static String banMessage;
     public static String kickMessage;
+    public static String warnMessage;
 
     @Override
     public void onEnable() {
@@ -28,6 +29,7 @@ public final class BCBlock extends JavaPlugin {
         banDuration = config.getString("ban-duration", "1h");
         banMessage = config.getString("ban-message", "You have been banned from the server for saying a blocked word.");
         kickMessage = config.getString("kick-message", "You have been kicked from the server saying a blocked word.");
+        warnMessage = config.getString("warn-message", "You have been warned for saying a blocked word.");
 
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
 

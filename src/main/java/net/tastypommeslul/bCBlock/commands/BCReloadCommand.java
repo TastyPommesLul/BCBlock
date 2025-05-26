@@ -33,6 +33,8 @@ public class BCReloadCommand extends Command {
             BCBlock.banDuration = plugin.getConfig().getString("ban-duration", "1h");
             BCBlock.banMessage = plugin.getConfig().getString("ban-message", "You have been banned from the server for saying a blocked word.");
             BCBlock.kickMessage = plugin.getConfig().getString("kick-message", "You have been kicked from the server saying a blocked word.");
+            BCBlock.warnMessage = plugin.getConfig().getString("warn-message", "You have been warned for saying a blocked word.");
+
             sender.sendMessage("Reloaded Config for Better Chat Block");
             return true;
         }

@@ -16,3 +16,6 @@ ban-message: You have been banned from the server for saying a blocked word.
 
 ## message displayed when player gets kicked
 kick-message: You have been kicked from the server for saying a blocked word.
+
+## message used for warning the player
+warn-message: You have been warned for saying a blocked word.
