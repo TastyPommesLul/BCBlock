@@ -3,3 +3,5 @@
 thank you for your patience
 
 Website for Documentation, Setup and Development Coming Soon
+
+[Example Config](https://github.com/TastyPommesLul/BCBlock/blob/master/src/main/resources/config.yml)
