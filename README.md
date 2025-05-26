@@ -1,4 +1,5 @@
 # This is not a finished plugin and will continue to be developed and improved over time.
-## thank you for your patience
 
-##### Website for Documentation, Setup and Development Coming Soon
+thank you for your patience
+
+Website for Documentation, Setup and Development Coming Soon
