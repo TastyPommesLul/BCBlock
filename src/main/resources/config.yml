@@ -1,17 +1,19 @@
-blocked-words:
-  - all
-  - words
-  - to
-  - be
-  - blocked
 
-punish-type: KICK | BAN
+## Case-insensitive
+blocked-words:
+  - wOrdS
+  - To
+  - bE
+  - bLOcKed
 
 ## if the punish-type is set to BAN, the ban-duration will be used
+punish-type: BAN
 
+## (s = seconds, m = minutes, h = hours, d = days)
 ban-duration: 1h 
-  (s = seconds, m = minutes, h = hours, d = days)
 
-ban-message: Message displayed when player gets banned
+## message displayed when player gets banned
+ban-message: You have been banned from the server for saying a blocked word.
 
-kick-message: Message displayed when player gets kicked
+## message displayed when player gets kicked
+kick-message: You have been kicked from the server for saying a blocked word.
