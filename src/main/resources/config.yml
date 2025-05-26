@@ -1,0 +1,17 @@
+blocked-words:
+  - all
+  - words
+  - to
+  - be
+  - blocked
+
+punish-type: KICK | BAN
+
+## if the punish-type is set to BAN, the ban-duration will be used
+
+ban-duration: 1h 
+  (s = seconds, m = minutes, h = hours, d = days)
+
+ban-message: Message displayed when player gets banned
+
+kick-message: Message displayed when player gets kicked
