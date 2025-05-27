@@ -1,8 +1,8 @@
 name: BCBlock
-version: '0.0.1'
+version: '0.0.2'
 main: net.tastypommeslul.bCBlock.BCBlock
 api-version: '1.21'
 prefix: BCBlock
 load: STARTUP
 authors: [ TastyPommesLul ]
-description: Learning Bridgadier
+description: Better Chat Block
