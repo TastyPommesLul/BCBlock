@@ -8,11 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerFishEvent;
 
 import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
 
 public class ChatListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -46,8 +43,10 @@ public class ChatListener implements Listener {
                             break;
                         case WARN:
                             BCBlock.getPlugin(BCBlock.class).getServer().dispatchCommand(BCBlock.getPlugin(BCBlock.class).getServer().getConsoleSender(), "warn " + p.getName() + " " + BCBlock.warnMessage);
+                            break;
                         default:
-
+                            p.sendMessage(Component.text(BCBlock.warnMessage));
+                            break;
                     }
 
                     return;
