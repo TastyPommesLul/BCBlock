@@ -2,6 +2,6 @@
 
 thank you for your patience
 
-Website for Documentation, Setup and Development Coming Soon
+[Docs Page](https://bcblockdocs.tastypommeslul.workers.dev)
 
 [Example Config](https://github.com/TastyPommesLul/BCBlock/blob/master/src/main/resources/example-config.yml)
