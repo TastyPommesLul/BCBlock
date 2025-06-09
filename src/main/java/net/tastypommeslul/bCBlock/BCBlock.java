@@ -34,7 +34,7 @@ public final class BCBlock extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        punishType = PunishType.valueOf(config.getString("punish-type", "WARN").toUpperCase());
+        punishType = PunishType.valueOf(config.getString("punish-type", "KICK").toUpperCase());
         banDuration = config.getString("ban-duration", "1h");
         banMessage = config.getString("ban-message", "You have been banned from the server for saying a blocked word.");
         kickMessage = config.getString("kick-message", "You have been kicked from the server saying a blocked word.");
@@ -48,6 +48,27 @@ public final class BCBlock extends JavaPlugin {
             config.set("blocked-words", defaultWords);
             saveConfig();
         }
+        if (config.getString("punish-type") == null) {
+            config.set("punish-type", "KICK");
+            saveConfig();
+        }
+        if (config.getString("ban-duration") == null) {
+            config.set("ban-duration", "1h");
+            saveConfig();
+        }
+        if (config.getString("ban-message") == null) {
+            config.set("ban-message", "You have been banned from the server for saying a blocked word. '{word}'");
+            saveConfig();
+        }
+        if (config.getString("kick-message") == null) {
+            config.set("kick-message", "You have been kicked from the server saying a blocked word. '{word}'");
+            saveConfig();
+        }
+        if (config.getString("warn-message") == null) {
+            config.set("warn-message", "You have been warned for saying a blocked word. '{word}'");
+            saveConfig();
+        }
+        reloadConfig();
 
         blockedWords = config.getStringList("blocked-words");
 

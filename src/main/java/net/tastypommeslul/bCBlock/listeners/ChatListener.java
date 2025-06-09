@@ -21,6 +21,8 @@ public class ChatListener implements Listener {
         // Split the message into words
         String[] messageWords = textMessage.content().split(" ");
 
+
+
         // Check each word against the blocked words list
         for (String messageWord : messageWords) {
             // Remove all non-alphabetic characters and convert to lowercase
@@ -30,6 +32,24 @@ public class ChatListener implements Listener {
             for (String blockedWord : BCBlock.blockedWords) {
                 if (filteredWord.equals(blockedWord.toLowerCase())) {
                     e.setCancelled(true);
+                    BCBlock.warnMessage = BCBlock.warnMessage.replace("{word}", messageWord);
+                    BCBlock.banMessage = BCBlock.banMessage.replace("{word}", messageWord);
+                    BCBlock.kickMessage = BCBlock.kickMessage.replace("{word}", messageWord);
+                    BCBlock.warnMessage = BCBlock.warnMessage.replace("{player}", p.getName());
+                    BCBlock.banMessage = BCBlock.banMessage.replace("{player}", p.getName());
+                    BCBlock.kickMessage = BCBlock.kickMessage.replace("{player}", p.getName());
+                    BCBlock.warnMessage = BCBlock.warnMessage.replace("{banDuration}", BCBlock.banDuration
+                            .replace("s", " Second/s")
+                            .replace("m", " Minute/s")
+                            .replace("h", " Hour/s"));
+                    BCBlock.banMessage = BCBlock.banMessage.replace("{banDuration}", BCBlock.banDuration
+                            .replace("s", " Second/s")
+                            .replace("m", " Minute/s")
+                            .replace("h", " Hour/s"));
+                    BCBlock.kickMessage = BCBlock.kickMessage.replace("{banDuration}", BCBlock.banDuration
+                            .replace("s", " Second/s")
+                            .replace("m", " Minute/s")
+                            .replace("h", " Hour/s"));
 
                     switch (BCBlock.punishType) {
                         case KICK:
@@ -37,9 +57,9 @@ public class ChatListener implements Listener {
                             break;
                         case BAN:
                             p.ban(BCBlock.banMessage,
-                                    Duration.parse(BCBlock.banDuration.endsWith("s") || BCBlock.banDuration.endsWith("S") ||
-                                            BCBlock.banDuration.endsWith("m") || BCBlock.banDuration.endsWith("M") ||
-                                            BCBlock.banDuration.endsWith("h") || BCBlock.banDuration.endsWith("H") ? "PT" + BCBlock.banDuration : "P" + BCBlock.banDuration), "[Blocked words]");
+                                    Duration.parse(BCBlock.banDuration.endsWith("s") ||
+                                            BCBlock.banDuration.endsWith("m") ||
+                                            BCBlock.banDuration.endsWith("h") ? "PT" + BCBlock.banDuration : "P" + BCBlock.banDuration), "[BCBlock]");
                             break;
                         case WARN:
                             BCBlock.getPlugin(BCBlock.class).getServer().dispatchCommand(BCBlock.getPlugin(BCBlock.class).getServer().getConsoleSender(), "warn " + p.getName() + " " + BCBlock.warnMessage);
