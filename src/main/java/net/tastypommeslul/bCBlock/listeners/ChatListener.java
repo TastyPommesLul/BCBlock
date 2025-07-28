@@ -51,6 +51,7 @@ public class ChatListener implements Listener {
                             .replace("m", " Minute/s")
                             .replace("h", " Hour/s"));
 
+
                     switch (BCBlock.punishType) {
                         case KICK:
                             p.kick(Component.text(BCBlock.kickMessage));
