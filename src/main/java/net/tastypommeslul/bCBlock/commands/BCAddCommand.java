@@ -6,15 +6,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BCAddCommand extends Command {
     private final BCBlock plugin = JavaPlugin.getPlugin(BCBlock.class);
-
-    public BCAddCommand(@NotNull String name) {
-        super(name);
-    }
 
     public BCAddCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
         super(name, description, usageMessage, aliases);
@@ -40,8 +35,8 @@ public class BCAddCommand extends Command {
             // Word doesn't exist, add it
             exWords.add(wordToAdd);
             plugin.config.set("blocked-words", exWords);
-            plugin.saveConfig();
             BCBlock.blockedWords = plugin.getConfig().getStringList("blocked-words");
+            plugin.saveConfig();
             sender.sendMessage("Added blocked word \"" + wordToAdd + "\" to the list.");
             return true;
         }

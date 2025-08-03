@@ -1,5 +1,5 @@
 name: BCBlock
-version: '0.0.3'
+version: '0.0.5'
 main: net.tastypommeslul.bCBlock.BCBlock
 api-version: '1.21'
 prefix: BCBlock

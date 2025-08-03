@@ -8,15 +8,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class BCReloadCommand extends Command {
 
     private final BCBlock plugin = BCBlock.getPlugin(BCBlock.class);
-
-    public BCReloadCommand(@NotNull String name) {
-        super(name);
-    }
 
     public BCReloadCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
         super(name, description, usageMessage, aliases);
@@ -57,12 +52,11 @@ public class BCReloadCommand extends Command {
             BCBlock.punishType = PunishType.valueOf(plugin.config.getString("punish-type") != null ? 
                              plugin.config.getString("punish-type").toUpperCase() : "WARN");
             BCBlock.banDuration = plugin.config.getString("ban-duration", "1h");
-            BCBlock.banMessage = plugin.config.getString("ban-message", 
-                             "You have been banned from the server for saying a blocked word.");
-            BCBlock.kickMessage = plugin.config.getString("kick-message", 
-                              "You have been kicked from the server saying a blocked word.");
-            BCBlock.warnMessage = plugin.config.getString("warn-message", 
-                              "You have been warned for saying a blocked word.");
+            BCBlock.muteDuration = plugin.config.getString("mute-duration", "10m");
+            BCBlock.banMessage = plugin.config.getString("ban-message");
+            BCBlock.kickMessage = plugin.config.getString("kick-message");
+            BCBlock.warnMessage = plugin.config.getString("warn-message");
+            BCBlock.muteMessage = plugin.config.getString("mute-message");
 
             // Inform the sender about the operation
             if (duplicatesRemoved > 0) {
