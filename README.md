@@ -2,6 +2,8 @@
 
 thank you for your patience
 
+[Modrinth](https://modrinth.com/plugin/bcblock)
+
 [Docs Page](https://bcblockdocs.tastypommeslul.workers.dev)
 
 [Example Config](https://github.com/TastyPommesLul/BCBlock/blob/master/src/main/resources/example-config.yml)
