@@ -1,8 +1,9 @@
 package net.tastypommeslul.bCBlock;
 
-import net.tastypommeslul.bCBlock.commands.BCAddCommand;
-import net.tastypommeslul.bCBlock.commands.BCReloadCommand;
-import net.tastypommeslul.bCBlock.commands.BCRemoveCommand;
+import net.tastypommeslul.bCBlock.commands.BCBAddCommand;
+import net.tastypommeslul.bCBlock.commands.BCBReloadCommand;
+import net.tastypommeslul.bCBlock.commands.BCBRemoveCommand;
+import net.tastypommeslul.bCBlock.enums.ForwardType;
 import net.tastypommeslul.bCBlock.enums.PunishType;
 import net.tastypommeslul.bCBlock.listeners.ChatListener;
 import org.bukkit.Bukkit;
@@ -23,10 +24,9 @@ public final class BCBlock extends JavaPlugin {
     // TODO: Add integration for more plugins
     public static List<String> blockedWords;
     public static PunishType punishType;
+    public static ForwardType forwardType;
     public static String banDuration;
     public static String muteDuration;
-
-    public static Boolean playerForwarding;
 
     // Messages displayed for each action
     // TODO: Add integration for more plugins
@@ -39,13 +39,13 @@ public final class BCBlock extends JavaPlugin {
     public void onEnable() {
         reloadConfig();
         punishType = PunishType.valueOf(config.getString("punish-type", "KICK").toUpperCase());
+        forwardType = ForwardType.valueOf(config.getString("forward-type", "WORD").toUpperCase());
         banDuration = config.getString("ban-duration", "1h");
         muteDuration = config.getString("mute-duration", "10m");
         banMessage = config.getString("ban-message", "You have been banned from the server for saying a blocked word.");
         kickMessage = config.getString("kick-message", "You have been kicked from the server saying a blocked word.");
         warnMessage = config.getString("warn-message", "You have been warned for saying a blocked word.");
         muteMessage = config.getString("mute-message", "You have been muted for saying a blocked word.");
-        playerForwarding = config.getBoolean("player-forwarding", false);
 
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 
@@ -56,8 +56,8 @@ public final class BCBlock extends JavaPlugin {
         if (config.getString("punish-type") == null) {
             config.set("punish-type", "KICK");
         }
-        if (config.getString("player-forwarding") == null) {
-            config.set("player-forwarding", false);
+        if (config.getString("forward-type") == null) {
+            config.set("forward-type", "WORD");
         }
         if (config.getString("ban-duration") == null) {
             config.set("ban-duration", "1h");
@@ -81,8 +81,8 @@ public final class BCBlock extends JavaPlugin {
 
         blockedWords = config.getStringList("blocked-words");
 
-        Bukkit.getCommandMap().register("bcblock", new BCReloadCommand("reload", "Reloads the blocked words list", "/bcblock:reload", List.of("rld")));
-        Bukkit.getCommandMap().register("bcblock", new BCAddCommand("add", "Adds a new Word into the blocked words list", "/bcblock:add", List.of()));
-        Bukkit.getCommandMap().register("bcblock", new BCRemoveCommand("remove", "Removes a Word from the blocked words list", "/bcblock:remove", List.of("rm", "del")));
+        Bukkit.getCommandMap().register("bcblock", new BCBReloadCommand("reload", "Reloads the blocked words list", "/bcblock:reload", List.of("rld")));
+        Bukkit.getCommandMap().register("bcblock", new BCBAddCommand("add", "Adds a new Word into the blocked words list", "/bcblock:add", List.of()));
+        Bukkit.getCommandMap().register("bcblock", new BCBRemoveCommand("remove", "Removes a Word from the blocked words list", "/bcblock:remove", List.of("rm", "del")));
     }
 }

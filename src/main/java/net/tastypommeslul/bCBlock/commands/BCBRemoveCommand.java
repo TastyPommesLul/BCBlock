@@ -10,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BCRemoveCommand extends Command {
+public class BCBRemoveCommand extends Command {
     private final BCBlock plugin = JavaPlugin.getPlugin(BCBlock.class);
 
-    public BCRemoveCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
+    public BCBRemoveCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
         super(name, description, usageMessage, aliases);
     }
 

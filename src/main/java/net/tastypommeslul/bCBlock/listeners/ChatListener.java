@@ -3,7 +3,11 @@ package net.tastypommeslul.bCBlock.listeners;
 import io.papermc.paper.event.player.ChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.tastypommeslul.bCBlock.BCBlock;
+import net.tastypommeslul.bCBlock.enums.ForwardType;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,12 +17,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.time.Duration;
 
-public class ChatListener implements Listener {
-    private final BCBlock plugin;
-
-    public ChatListener(BCBlock plugin) {
-        this.plugin = plugin;
-    }
+public record ChatListener(BCBlock plugin) implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
@@ -52,10 +51,15 @@ public class ChatListener implements Listener {
 
             setPlaceHolder(p, filteredWord);
 
+            Style style = Style.style(s -> {
+                s.color(NamedTextColor.RED);
+                s.decoration(TextDecoration.BOLD, true);
+            });
             // Check if the filtered word matches any blocked word
             for (String blockedWord : BCBlock.blockedWords) {
                 if (filteredWord.equals(blockedWord.toLowerCase())) {
                     e.setCancelled(true);
+                    Component messageComponent = Component.text(p.getName() + "'s message contained a blocked word \n'");
 
 
                     switch (BCBlock.punishType) {
@@ -76,12 +80,24 @@ public class ChatListener implements Listener {
                             break;
                         case NOTIFY:
                             p.sendRichMessage("Your message has been blocked! <hover:show_text:'The Word <red><bold>" + filteredWord + "</bold></red> is Blocked on this Server!'>[hover this for info]</hover>");
-                            if (BCBlock.playerForwarding) {
-                                p.sendMessage("This will be forwarded to the administrators of this server.");
-                            }
                             for (Player player : Bukkit.getOnlinePlayers()) {
                                 if (player.hasPermission("bcblock.notify") || player.hasPermission("bcblock.admin")) {
-                                    player.sendRichMessage(p.getName() + "'s message contained a blocked word '<red><bold>" + filteredWord + "</bold></red>'.");
+                                    if (BCBlock.forwardType == ForwardType.MESSAGE) {
+                                        for (String word : messageWords) {
+                                            if (word.toLowerCase().equals(filteredWord))
+                                                messageComponent = messageComponent.append(Component.text(word + " ").style(style));
+                                            else if (word.equals(messageWords[messageWords.length - 1])) {
+                                                messageComponent = messageComponent.append(Component.text(word));
+                                            } else {
+                                                messageComponent = messageComponent.append(Component.text(word + " "));
+                                            }
+                                        }
+                                        messageComponent = messageComponent.append(Component.text("'"));
+                                        player.sendMessage(messageComponent);
+                                        break;
+                                    } else if (BCBlock.forwardType == ForwardType.WORD) {
+                                        player.sendRichMessage(p.getName() + "'s message contained a blocked word \n'<red><bold>" + filteredWord + "</bold></red>'.");
+                                    }
                                 }
                             }
                             break;

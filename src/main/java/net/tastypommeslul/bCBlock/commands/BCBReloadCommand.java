@@ -1,6 +1,7 @@
 package net.tastypommeslul.bCBlock.commands;
 
 import net.tastypommeslul.bCBlock.BCBlock;
+import net.tastypommeslul.bCBlock.enums.ForwardType;
 import net.tastypommeslul.bCBlock.enums.PunishType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -9,11 +10,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BCReloadCommand extends Command {
+public class BCBReloadCommand extends Command {
 
     private final BCBlock plugin = BCBlock.getPlugin(BCBlock.class);
 
-    public BCReloadCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
+    public BCBReloadCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
         super(name, description, usageMessage, aliases);
     }
 
@@ -51,6 +52,8 @@ public class BCReloadCommand extends Command {
             BCBlock.blockedWords = uniqueWords;
             BCBlock.punishType = PunishType.valueOf(plugin.config.getString("punish-type") != null ? 
                              plugin.config.getString("punish-type").toUpperCase() : "WARN");
+            BCBlock.forwardType = ForwardType.valueOf(plugin.config.getString("forward-type") != null ?
+                             plugin.config.getString("forward-type").toUpperCase() : "WORD");
             BCBlock.banDuration = plugin.config.getString("ban-duration", "1h");
             BCBlock.muteDuration = plugin.config.getString("mute-duration", "10m");
             BCBlock.banMessage = plugin.config.getString("ban-message");

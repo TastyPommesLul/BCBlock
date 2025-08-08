@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class BCAddCommand extends Command {
+public class BCBAddCommand extends Command {
     private final BCBlock plugin = JavaPlugin.getPlugin(BCBlock.class);
 
-    public BCAddCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
+    public BCBAddCommand(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
         super(name, description, usageMessage, aliases);
     }
 

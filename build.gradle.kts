@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.tastypommeslul"
-version = "0.0.5"
+version = "0.0.5.1"
 
 repositories {
     mavenCentral()
@@ -62,7 +62,7 @@ tasks.shadowJar {
     doLast {
         copy {
             from(archiveFile)
-            into("C:\\Users\\Darren\\Desktop\\Plugin Dev Server\\plugins")
+            into("C:\\Users\\Darren\\Desktop\\Plugin Dev Server\\1.21.4\\plugins")
         }
     }
 }
